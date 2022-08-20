@@ -38,6 +38,7 @@ A explicação começará supondo que você já tem o Python instalado na sua m�
 
 >- [Aqui](https://python.org.br/instalacao-windows/) ensina instalar o Python no Windows.
 >- [Aqui](https://python.org.br/instalacao-linux/) ensina instalar o Python no Linux.
+
 > Para informações adicionais, acesse o [Site Oficial](https://www.python.org/) do Python.
 </div>
 
@@ -64,6 +65,7 @@ python main.py
 ```
 
 ### Criação do arquivo .exe
+[Aqui](https://drive.google.com/drive/folders/1OQH8bnTqI_qp6aat5kBNqVbJdrsUd11n) você pode baixar o exe deste projeto, sem precisar criar manualmente.
 ```bash
 pyinstaller main.py -n GMapsScrapper --onefile -w -i ./data/app.ico
 
