@@ -26,7 +26,7 @@ Este é um Web Scrapper que coleta o nome, endereço e telefone de restaurantes 
     - [Descrição do comando de criação do exe](#descrição-do-comando)
 - [Principais tecnologias utilizadas](#principais-tecnologias-utilizadas)
 - [Autor](#autor)
-- [Licença](#sob-licença-mitlicense)
+- [Licença](#sob-a-licença-mit)
 
 ---
 <div align="center">
@@ -100,6 +100,6 @@ Feito com ❤️ por [Ajax Lima](https://github.com/Chamoouske)
 [![Twitter Badge](https://img.shields.io/badge/-@chamoouske-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/chamoouske)](https://twitter.com/chamoouske) [![Linkedin Badge](https://img.shields.io/badge/-Ajax%20Lima-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/ajaxlima/)](https://www.linkedin.com/in/ajaxlima/) [![Gmail Badge](https://img.shields.io/badge/-ajaxlima94@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:ajaxlima94@gmail.com)](mailto:ajaxlima94@gmail.com)
 
 ---
-## Sob licença [MIT](/LICENSE)
+## Sob a licença [MIT](/LICENSE)
 ![Licence](https://img.shields.io/github/license/Chamoouske/PrintersMaintenanceFlask)
 </div>
