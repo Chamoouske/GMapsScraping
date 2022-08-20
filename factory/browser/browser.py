@@ -37,6 +37,7 @@ class Browser:
 
     def generate_excel(self):
         df = pd.DataFrame(self.restaurants)
+        df.drop_duplicates(inplace=True)
         df.to_excel('./resultados.xlsx', index=False)
 
     def search_locals(self, search_string='', num_pages=False):
