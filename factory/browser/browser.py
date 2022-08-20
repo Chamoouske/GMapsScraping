@@ -19,26 +19,32 @@ class Browser:
     total_results = 0
     last_results = 0
 
+
     def __init__(self):
         pass
+
 
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
             cls._instance = super(Browser, cls).__new__(cls, *args, **kwargs)
         return cls._instance
 
+
     def get(self, url_site):
         self.driver.get(url_site)
         pass
+
 
     def close(self):
         self.driver.quit()
         pass
 
+
     def generate_excel(self):
         df = pd.DataFrame(self.restaurants)
         df.drop_duplicates(inplace=True)
         df.to_excel('./resultados.xlsx', index=False)
+
 
     def search_locals(self, search_string='', num_pages=False):
         self.get('https://www.google.com/maps')
@@ -46,6 +52,7 @@ class Browser:
         self.driver.maximize_window()
         self.driver.find_element(By.XPATH, xpath_search_input).send_keys(search_string, Keys.ENTER)
         self.update_elements_results()
+
 
     def update_elements_results(self):
         continue_search = True
@@ -55,6 +62,7 @@ class Browser:
 
         self.generate_excel()
         self.close()
+
 
     def get_elements_in_results(self):
         self.show_all_results()
@@ -71,14 +79,17 @@ class Browser:
         self.last_results = self.total_results
         return True
 
+
     def show_all_results(self):
         self.wait_until_element_is_not_displayed(xpath_div_results)
         self.scroll_div_to_show_all_results(xpath_div_results)
+
 
     def wait_until_element_is_not_displayed(self, element):
         WebDriverWait(self.driver, timeout=60)\
             .until(lambda driver: driver.find_element(By.XPATH, element)\
             .is_displayed())
+
 
     def scroll_div_to_show_all_results(self, div):
         try:
@@ -86,19 +97,32 @@ class Browser:
         except TimeoutException:
             pass
 
+
     def get_values_in_element(self, element):
         try: element.click()
         except: pass
         time.sleep(3)
-        try:
-            self.wait_until_element_is_not_displayed(xpath_result_details)
-            restaurant_name = self.driver.find_element(By.XPATH, xpath_result_details_name).text
-            restaurant_address = self.driver.find_element(By.XPATH, xpath_result_details_address).text
-        except:
-            try:
-                restaurant_address = self.driver.find_element(By.XPATH, xpath_result_details_address2).text
-            except:
-                restaurant_address = 'Sem endereço informado!'
+        self.wait_until_element_is_not_displayed(xpath_result_details)
+        restaurant_name = self.get_restaurant_name()
+        restaurant_address = self.get_restaurant_address()
+        restaurant_phone = self.get_restaurant_phone()
+        
+        self.save_value_results(restaurant_name, restaurant_address, restaurant_phone)
+
+    
+    def get_restaurant_name(self):
+        try: return self.driver.find_element(By.XPATH, xpath_result_details_name).text
+        except: return 'Sem nome informado!'
+
+    
+    def get_restaurant_address(self):
+        try: return self.driver.find_element(By.XPATH, xpath_result_details_address).text
+        except: 
+            try: return self.driver.find_element(By.XPATH, xpath_result_details_address2).text
+            except: return 'Sem endereço informado!'
+    
+
+    def get_restaurant_phone(self):
         restaurant_phone = None
         web_elements_in_results = self.driver.find_elements(By.XPATH, xpath_result_details_phone)
         for web_element in web_elements_in_results:
@@ -117,7 +141,9 @@ class Browser:
                     pass
         if restaurant_phone == None:
             restaurant_phone = 'Sem telefone disponível!'
-        self.save_value_results(restaurant_name, restaurant_address, restaurant_phone)
+
+        return restaurant_phone
+
 
     def save_value_results(self, name, address, phone):
         self.restaurants['nome'].append(name)
