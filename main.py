@@ -1,9 +1,8 @@
-from factory.browser.factory import FactoryBrowser
-from factory.window.window import Janela
+from src.window.window import Window
 
 
 if __name__ == '__main__':
-    janela = Janela()
+    janela = Window()
     janela.config_root(title='Busca no Maps')
     janela.create_labels()
     janela.create_buttons()

@@ -13,6 +13,11 @@ from .browser import Browser
 
 
 def FactoryBrowser(browser='chrome'):
+    """
+    Factory method to create a browser instance
+    :param browser: browser name
+    :return: browser instance
+    """
     browsers = {
         'chrome': Chrome,
         'firefox': Firefox,
@@ -23,6 +28,10 @@ def FactoryBrowser(browser='chrome'):
 
 
 class Chrome(Browser):
+    """
+    Chrome browser class to create a Chrome browser instance
+    extends Browser class
+    """
     def __init__(self, occult=False):
         self.options = webdriver.ChromeOptions()
         self.def_occult(occult)
@@ -35,6 +44,10 @@ class Chrome(Browser):
 
 
 class Firefox(Browser):
+    """
+    Firefox browser class to create a Firefox browser instance
+    extends Browser class
+    """
     def __init__(self, occult=False):
         self.options = webdriver.FirefoxProfile()
         self.def_occult(occult)
@@ -47,6 +60,10 @@ class Firefox(Browser):
 
 
 class Edge(Browser):
+    """
+    Edge browser class to create a Edge browser instance
+    extends Browser class
+    """
     def __init__(self, occult=False):
         self.options = webdriver.EdgeOptions()
         self.def_occult(occult)

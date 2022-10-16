@@ -1,0 +1,16 @@
+site_name: GoogleMaps Scrapper
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append("src")
+            - sys.path.append("src/fact")
+watch:
+  - src
